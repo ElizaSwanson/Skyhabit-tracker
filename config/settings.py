@@ -42,7 +42,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "tracker",
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "corsheaders",
+    "django_celery_beat",
+    "drf_yasg",
+    "users",
+    "tracker"
 ]
 
 MIDDLEWARE = [
@@ -53,6 +59,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -81,8 +88,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.getenv("NAME"),
+        'USER': os.getenv("USER"),
+        "PASSWORD": os.getenv("PASSWORD"),
+        "HOST": os.getenv("HOST"),
+        "PORT": os.getenv("PORT"),
     }
 }
 
@@ -135,6 +146,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "users.User"
+
 CACHE_ENABLED = True
 
 if CACHE_ENABLED:
@@ -145,7 +158,7 @@ if CACHE_ENABLED:
     }
 }
 
-AUTH_USER_MODEL = "users.Users"
+#AUTH_USER_MODEL = "users.Users"
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
@@ -192,11 +205,13 @@ CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
 
 # Максимальное время на выполнение задачи
-CELERY_TASK_TIME_LIMIT = 30 * 60
+#CELERY_TASK_TIME_LIMIT = 30 * 60
 
 CELERY_BEAT_SCHEDULE = {
-    'task-name': {
+   'task-name': {
         'task': 'lms.tasks.deactivate_inactive_users',
         'schedule': timedelta(days=1),
     },
 }
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
