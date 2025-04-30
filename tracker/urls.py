@@ -7,19 +7,9 @@ from .views import (HabitCreateView, HabitDeleteView, HabitListView,
 app_name = TrackerConfig.name
 
 urlpatterns = [
-    path(
-        "list/", HabitListView.as_view(), name="habit-list"
-    ),
-    path(
-        "list/public/", PublicHabitListView.as_view(), name="habit-list-public"
-    ),
-    path(
-        "create/", HabitCreateView.as_view(), name="habit-create"
-    ),
-    path(
-        "edit/<int:pk>/", HabitUpdateView.as_view(), name="habit-update"
-    ),
-    path(
-        "delete/<int:pk>/", HabitDeleteView.as_view(), name="habit-delete"
-    ),
+    path("list/", HabitListView.as_view(), name="tracker-list"),
+    path("list/public/", PublicHabitListView.as_view(), name="tracker-list-public"),
+    path("create/", HabitCreateView.as_view(), name="tracker-create"),
+    path("edit/<int:pk>/", HabitUpdateView.as_view(), name="tracker-update"),
+    path("delete/<int:pk>/", HabitDeleteView.as_view(), name="tracker-delete"),
 ]

@@ -1,0 +1,18 @@
+[
+{
+    "model": "tracker.habit",
+    "pk": 2,
+    "fields": {
+        "owner": 1,
+        "location": "дом",
+        "time": "18:00:00",
+        "action": "Покурить",
+        "is_pleasant": false,
+        "related_habit": null,
+        "frequency": 1,
+        "reward": null,
+        "time_to_complete": 5,
+        "is_public": false
+    }
+}
+]

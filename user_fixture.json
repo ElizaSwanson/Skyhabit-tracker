@@ -1,0 +1,23 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$W23KJSYDSXF9gbiHfHt1b8$PLn/B4nM2G4YLG6DeyYoVnF9mS6imTbT4v4J1ZmhWyM=",
+        "last_login": "2025-04-30T12:49:51Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-04-27T19:24:33Z",
+        "username": "eswanson",
+        "email": "liz99246@gmail.com",
+        "phone": null,
+        "avatar": "",
+        "telegram_chat_id": "824016598",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
