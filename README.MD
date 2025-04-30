@@ -3,7 +3,7 @@
 ## Установка:
 
 1. Клонируйте репозиторий:
-
+git clone https://github.com/ElizaSwanson/Skyhabit-tracker
 
 2. Установите зависимости:
 
