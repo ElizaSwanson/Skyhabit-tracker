@@ -13,8 +13,14 @@ pip install -r req.txt
 3. Создайте и заполните данными файл .env по шаблону .env.sample
 4. Пропишите команды:
 ```
-python manage.py makemigrations
-python manage.py migrate
+    python manage.py makemigrations
+    python manage.py migrate
+```
+
+5. Не забудьте прописать данные команды (если работаете на windows), а также запустить redis: 
+```
+    celery -A config worker -l info -P eventlet 
+    celery -A config beat -l info
 ```
 5. Можете добавить заранее созданные фикстуры:
 
