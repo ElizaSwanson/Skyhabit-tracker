@@ -20,7 +20,7 @@ def send_reminder():
             "chat_id": habit.telegram_chat_id,
         }
 
-        requests.get(
+        requests.post(
             f"http://api.telegram.org/bot{settings.TELEGRAM_BOT_TOKEN}/sendMessage",
             params=params,
         )

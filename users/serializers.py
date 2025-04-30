@@ -17,7 +17,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             phone=validated_data.get("phone", ""),
             avatar=validated_data.get("avatar", None),
         )
-        
+
         user.set_password(validated_data["password"])
         user.save()
         return user
