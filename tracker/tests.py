@@ -95,27 +95,36 @@ class HabitAPITestCase(TestCase):
         response = self.client.post(
             "/tracker/create/",
             {
-                "location": "Работа",
-                "time": "14:00:00",
-                "action": "Обед",
-                "is_pleasant": True,
+                "location": "Дом",
+                "time": "10:00:00",
+                "action": "Попить пива",
+                "is_pleasant": False,
                 "frequency": 1,
-                "reward": "Хавчик",
-                "time_to_complete": 30,
+                "reward": "Пиво",
+                "time_to_complete": 60,
                 "is_public": True,
             },
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data["action"], "Обед")
+        self.assertEqual(response.data["action"], "Попить пива")
 
     def test_update_habit(self):
         response = self.client.patch(
             f"/tracker/edit/{self.habit.id}/",
-            {"action": "Другое действие", "frequency": 1},
+            {
+                "location": "Дом",
+                "time": "10:00:00",
+                "action": "Побегать",
+                "is_pleasant": False,
+                "frequency": 1,
+                "reward": "Пиво",
+                "time_to_complete": 60,
+                "is_public": True,
+            },
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.habit.refresh_from_db()
-        self.assertEqual(self.habit.action, "Другое действие")
+        self.assertEqual(self.habit.action, "Побегать")
         self.assertEqual(self.habit.frequency, 1)
 
     def test_delete_habit(self):
@@ -134,9 +143,9 @@ class HabitAPITestCase(TestCase):
             location="Парк",
             time="20:00:00",
             action="Пробежка",
-            is_pleasant=True,
+            is_pleasant=False,
             frequency=1,
-            reward=None,
+            reward="Еда",
             time_to_complete=30,
             is_public=True,
         )
