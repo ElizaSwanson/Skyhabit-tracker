@@ -9,7 +9,9 @@ class HabitValidator:
         if attrs.get("related_habit_id"):
             related_habit = Habit.objects.get(pk=attrs.get("related_habit_id"))
             if not related_habit.is_pleasant:
-                raise serializers.ValidationError("Можно выбрать только хорошую привычку")
+                raise serializers.ValidationError(
+                    "Можно выбрать только хорошую привычку"
+                )
 
     def validate_reward(self, attrs):
         """Validates that only reward or a related habit are selected in the same time."""
@@ -20,7 +22,12 @@ class HabitValidator:
 
     def validate_pleasant_habit(self, attrs):
         if attrs.get("is_pleasant") and any(
-            [attrs.get("related_habit_id"), attrs.get("reward"), attrs.get("frequency"), attrs.get("time")]
+            [
+                attrs.get("related_habit_id"),
+                attrs.get("reward"),
+                attrs.get("frequency"),
+                attrs.get("time"),
+            ]
         ):
             raise serializers.ValidationError(
                 "Или награда, или выполнение хорошей привычки!!!"
@@ -28,7 +35,13 @@ class HabitValidator:
         if not attrs.get("is_pleasant") and not any(
             [
                 all([attrs.get("reward"), attrs.get("frequency"), attrs.get("time")]),
-                all([attrs.get("related_habit_id"), attrs.get("frequency"), attrs.get("time")]),
+                all(
+                    [
+                        attrs.get("related_habit_id"),
+                        attrs.get("frequency"),
+                        attrs.get("time"),
+                    ]
+                ),
             ]
         ):
             raise serializers.ValidationError(

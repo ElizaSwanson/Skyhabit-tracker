@@ -5,7 +5,6 @@ from rest_framework.test import APIClient
 
 from .models import Habit
 
-
 User = get_user_model()
 
 
