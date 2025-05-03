@@ -212,7 +212,7 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_BEAT_SCHEDULE = {
     "task-name": {
         "task": "tracker.tasks.send_reminder",
-        "schedule": timedelta(minutes=1),
+        "schedule": timedelta(hours=1),
     },
 }
 
